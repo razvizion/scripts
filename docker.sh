@@ -34,7 +34,7 @@ function update_script() {
   msg_ok "Base system updated"
 
   msg_info "Updating Docker Engine"
-  $STD apt-get install --only-upgrade -y docker-ce docker-ce-cli containerd.io=1.7.28
+  $STD apt-get install --only-upgrade -y docker-ce docker-ce-cli containerd.io=1.7.28-1~debian.12~bookworm
   msg_ok "Docker Engine updated"
 
   if [[ -f /usr/local/lib/docker/cli-plugins/docker-compose ]]; then
