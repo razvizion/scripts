@@ -34,8 +34,10 @@ function update_script() {
   msg_ok "Base system updated"
 
   msg_info "Updating Docker Engine"
-  $STD apt-get install --allow-downgrades -y docker-ce docker-ce-cli containerd.io=1.7.28-1~debian.12~bookworm
+  $STD apt-get install --only-upgrade -y docker-ce docker-ce-cli containerd.io
   msg_ok "Docker Engine updated"
+  $STD mount --bind /dev/null /sys/module/apparmor/parameters/enabled
+  $STD systemctl restart docker
 
   if [[ -f /usr/local/lib/docker/cli-plugins/docker-compose ]]; then
     COMPOSE_BIN="/usr/local/lib/docker/cli-plugins/docker-compose"
